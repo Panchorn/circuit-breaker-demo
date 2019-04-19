@@ -1,3 +1,8 @@
+server:
+  port: 8443
+  servlet:
+    context-path: /circuit-breaker-demo
+
 spring:
   jpa:
     hibernate:

@@ -21,7 +21,7 @@ public class BucketService {
         System.out.println("Creating bucket for " + customerName);
         BucketEntity bucketEntity = bucketRepository.save(new BucketEntity(customerName));
         BucketData bucketData = BucketMapper.bucketDataMapper(bucketEntity);
-        System.out.println("Bucket created :\n" + bucketData);
+        System.out.println("Bucket created :\n" + bucketEntity);
         return bucketData;
     }
 
