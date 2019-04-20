@@ -18,4 +18,12 @@ public class StuffMapper {
         return new StuffData(stuffEntity.getName(), stuffEntity.getPrice());
     }
 
+    public static List<StuffEntity> stuffEntityListMapper(List<StuffData> stuffDataList) {
+        return stuffDataList.stream().map(stuffData -> stuffEntityMapper(stuffData)).collect(Collectors.toList());
+    }
+
+    public static StuffEntity stuffEntityMapper(StuffData stuffData) {
+        return new StuffEntity(stuffData.getName(), stuffData.getPrice());
+    }
+
 }
