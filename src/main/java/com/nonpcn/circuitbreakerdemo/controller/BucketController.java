@@ -19,7 +19,7 @@ public class BucketController {
 
     @PostMapping
     public BucketData createBucket(@RequestBody BucketData bucketData) {
-        return bucketService.createBucket(bucketData.getCustomerName());
+        return bucketService.createBucket(bucketData);
     }
 
 }
