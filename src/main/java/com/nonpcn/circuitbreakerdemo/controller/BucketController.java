@@ -3,11 +3,16 @@ package com.nonpcn.circuitbreakerdemo.controller;
 import com.nonpcn.circuitbreakerdemo.model.BucketData;
 import com.nonpcn.circuitbreakerdemo.service.BucketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController(value = "/bucket")
+import java.util.List;
+
+@RestController
+@RequestMapping(value = "/buckets")
 public class BucketController {
 
     private BucketService bucketService;
@@ -20,6 +25,11 @@ public class BucketController {
     @PostMapping
     public BucketData createBucket(@RequestBody BucketData bucketData) {
         return bucketService.createBucket(bucketData);
+    }
+
+    @GetMapping
+    public List<BucketData> getBuckets() {
+        return bucketService.getBuckets();
     }
 
 }

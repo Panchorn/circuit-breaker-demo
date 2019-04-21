@@ -15,15 +15,15 @@ public class StuffMapper {
     }
 
     public static StuffData stuffDataMapper(StuffEntity stuffEntity) {
-        return new StuffData(stuffEntity.getName(), stuffEntity.getPrice());
+        return new StuffData(stuffEntity.getName(), stuffEntity.getPrice(), stuffEntity.getBucketId());
     }
 
-    public static List<StuffEntity> stuffEntityListMapper(List<StuffData> stuffDataList) {
-        return stuffDataList.stream().map(stuffData -> stuffEntityMapper(stuffData)).collect(Collectors.toList());
+    public static List<StuffEntity> stuffEntityListMapper(List<StuffData> stuffDataList, Long bucketId) {
+        return stuffDataList.stream().map(stuffData -> stuffEntityMapper(stuffData, bucketId)).collect(Collectors.toList());
     }
 
-    public static StuffEntity stuffEntityMapper(StuffData stuffData) {
-        return new StuffEntity(stuffData.getName(), stuffData.getPrice());
+    public static StuffEntity stuffEntityMapper(StuffData stuffData, Long bucketId) {
+        return new StuffEntity(stuffData.getName(), stuffData.getPrice(), bucketId);
     }
 
 }

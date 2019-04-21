@@ -1,6 +1,8 @@
 package com.nonpcn.circuitbreakerdemo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.apache.logging.log4j.util.Strings;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,17 +15,20 @@ public class StuffEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private Double price;
+    private Long stuffId;
+    private String name = Strings.EMPTY;
+    private Double price = 0.0;
+
+    private Long bucketId;
 
     protected StuffEntity() {
 
     }
 
-    public StuffEntity(String name, Double price) {
+    public StuffEntity(String name, Double price, Long bucketId) {
         this.name = name;
         this.price = price;
+        this.bucketId = bucketId;
     }
 
 }

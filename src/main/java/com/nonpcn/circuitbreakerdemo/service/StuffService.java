@@ -23,7 +23,7 @@ public class StuffService {
         System.out.println("Finding all stuff");
         List<StuffEntity> stuffEntityList = stuffRepository.findAll();
         List<StuffData> stuffDataList = StuffMapper.stuffDataListMapper(stuffEntityList);
-        System.out.println("All stuff\n" + stuffEntityList);
+        System.out.println("All stuff " + stuffEntityList);
         return stuffDataList;
     }
 

@@ -9,5 +9,6 @@ public class StuffData {
 
     private String name;
     private Double price;
+    private Long bucketId;
 
 }
