@@ -38,4 +38,9 @@ public class BucketController {
         return bucketService.getBucket(customerName);
     }
 
+    @GetMapping("/circuit/{customerName}")
+    public BucketData getBucketsWithCircuit(@PathVariable("customerName") String customerName) {
+        return bucketService.getBucketsWithCircuit(customerName);
+    }
+
 }
