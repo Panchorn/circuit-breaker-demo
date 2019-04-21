@@ -49,8 +49,7 @@ public class BucketService {
         BucketEntity bucketEntity;
         if (!_bucketEntity.isPresent()) {
             bucketEntity = bucketRepository.save(new BucketEntity(customerName));
-        }
-        else {
+        } else {
             bucketEntity = _bucketEntity.get();
         }
 
@@ -69,17 +68,34 @@ public class BucketService {
     public List<BucketData> getBuckets() {
         System.out.println("Finding all bucket");
         List<BucketEntity> bucketEntityList = bucketRepository.findAll();
-
-        bucketEntityList.stream().forEach(bucketEntity -> {
-            Optional<List<StuffEntity>> _stuffEntity = stuffRepository.findByBucketId(bucketEntity.getBucketId());
-            if (_stuffEntity.isPresent()) {
-                bucketEntity.setStuffs(_stuffEntity.get());
-            }
-        });
-
+        setStuffsToBuckets(bucketEntityList);
         List<BucketData> bucketDataList = BucketMapper.bucketDataListMapper(bucketEntityList);
         System.out.println("All bucket " + bucketEntityList);
         return bucketDataList;
+    }
+
+    public BucketData getBucket(String customerName) {
+        System.out.println("Finding bucket for : " + customerName);
+        Optional<BucketEntity> _bucketEntity = bucketRepository.findByCustomerName(customerName);
+        BucketEntity bucketEntity = null;
+        if (_bucketEntity.isPresent()) {
+            bucketEntity = _bucketEntity.get();
+            setStuffsToBucket(bucketEntity);
+        }
+        BucketData bucketData = bucketEntity != null ? BucketMapper.bucketDataMapper(bucketEntity) : null;
+        System.out.println("Bucket detail : " + bucketEntity);
+        return bucketData;
+    }
+
+    private void setStuffsToBuckets(List<BucketEntity> bucketEntityList) {
+        bucketEntityList.stream().forEach(bucketEntity -> setStuffsToBucket(bucketEntity));
+    }
+
+    private void setStuffsToBucket(BucketEntity bucketEntity) {
+        Optional<List<StuffEntity>> _stuffEntity = stuffRepository.findByBucketId(bucketEntity.getBucketId());
+        if (_stuffEntity.isPresent()) {
+            bucketEntity.setStuffs(_stuffEntity.get());
+        }
     }
 
 }
