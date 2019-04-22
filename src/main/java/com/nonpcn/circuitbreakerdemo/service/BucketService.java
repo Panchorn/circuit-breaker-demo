@@ -111,8 +111,13 @@ public class BucketService {
 
     @HystrixCommand(
             fallbackMethod = "fallbackGetBucketsWithCircuit",
+            threadPoolKey = "getBucketsWithCircuitThreadPool",
+            threadPoolProperties = {
+                    @HystrixProperty(name = "coreSize", value = "20"),
+                    @HystrixProperty(name = "maxQueueSize", value = "5")
+            },
             commandProperties = {
-                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
             }
     )
     public BucketData getBucketsWithCircuit(String customerName) {
@@ -125,7 +130,7 @@ public class BucketService {
     }
 
     private BucketData fallbackGetBucketsWithCircuit(String customerName) {
-        System.out.println("=CIRCUIT= Starting run fallback");
+        System.out.println("xCIRCUITx Starting run fallback");
         return new BucketData(Strings.EMPTY, Collections.emptyList());
     }
 
@@ -138,7 +143,7 @@ public class BucketService {
     private void sleep() {
         System.out.println("=CIRCUIT= sleeping ");
         try {
-            Thread.sleep(5100);
+            Thread.sleep(2100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
