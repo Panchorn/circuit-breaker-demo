@@ -114,7 +114,8 @@ public class BucketService {
             threadPoolKey = "getBucketsWithCircuitThreadPool",
             threadPoolProperties = {
                     @HystrixProperty(name = "coreSize", value = "20"),
-                    @HystrixProperty(name = "maxQueueSize", value = "5")
+                    @HystrixProperty(name = "maxQueueSize", value = "5"),
+                    @HystrixProperty(name = "queueSizeRejectionThreshold", value = "80")
             },
             commandProperties = {
                     @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")

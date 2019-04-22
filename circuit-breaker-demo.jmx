@@ -28,7 +28,7 @@
       <hashTree/>
       <kg.apc.jmeter.threads.SteppingThreadGroup guiclass="kg.apc.jmeter.threads.SteppingThreadGroupGui" testclass="kg.apc.jmeter.threads.SteppingThreadGroup" testname="jp@gc - Stepping Thread Group" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <stringProp name="ThreadGroup.num_threads">10</stringProp>
+        <stringProp name="ThreadGroup.num_threads">50</stringProp>
         <stringProp name="Threads initial delay">${__P(waitingTime)}</stringProp>
         <stringProp name="Start users count">${__P(threadsNext)}</stringProp>
         <stringProp name="Start users count burst">${__P(threadsStart)}</stringProp>
@@ -86,7 +86,7 @@
             <hashTree/>
             <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
               <collectionProp name="Asserion.test_strings">
-                <stringProp name="563229123">&quot;customerName&quot;:&quot;&quot;</stringProp>
+                <stringProp name="1583552868">&quot;customerName&quot;:&quot;${customerName}&quot;</stringProp>
               </collectionProp>
               <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
               <boolProp name="Assertion.assume_success">false</boolProp>
